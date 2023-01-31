@@ -30,5 +30,13 @@ Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::middleware(['list'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/benef', [DashboardController::class, 'benef'])->name('benef');
+    Route::get('/campagne', [DashboardController::class, 'campagne'])->name('campagne');
+    Route::get('/organe',  [DashboardController::class, 'organe'])->name('organe');
+    Route::post('/add_organe',  [DashboardController::class, 'add_organe'])->name('add_organe');
+    Route::get('/zone', [DashboardController::class, 'zone'])->name('zone');
+    Route::post('/add_zone', [DashboardController::class, 'add_zone'])->name('add_zone');
+    Route::get('/distrib', [DashboardController::class, 'distrib'])->name('distrib');
+    Route::post('/add_distrib', [DashboardController::class, 'add_distrib'])->name('add_distrib');
 });
 
