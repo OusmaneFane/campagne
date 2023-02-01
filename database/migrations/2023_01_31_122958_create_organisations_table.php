@@ -21,6 +21,9 @@ class CreateOrganisationsTable extends Migration
             $table->string('responsable_organe');
             $table->string('tel_responsable');
             $table->string('email_responsable');
+            $table->unsignedBigInteger('campagne_id')->nullable(false)->default(0);
+            $table->foreign('campagne_id')->references('id')->on('campagnes')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

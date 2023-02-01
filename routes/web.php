@@ -38,5 +38,6 @@ Route::middleware(['list'])->group(function () {
     Route::post('/add_zone', [DashboardController::class, 'add_zone'])->name('add_zone');
     Route::get('/distrib', [DashboardController::class, 'distrib'])->name('distrib');
     Route::post('/add_distrib', [DashboardController::class, 'add_distrib'])->name('add_distrib');
+    Route::post('/add_campagne', [DashboardController::class, 'add_campagne'])->name('add_campanne');
 });
 

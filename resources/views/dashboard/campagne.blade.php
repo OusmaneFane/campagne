@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Camapagne</h1>
+            <h1 class="m-0">Campagne</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -37,7 +37,7 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 
@@ -137,95 +137,116 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
  <!-- Main content -->
  <section class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <!-- left column -->
-        <div class="col-md-6">
-          <!-- general form elements -->
-          <div class="card card-primary">
-            <div class="card-header">
-              <h3 class="card-title">Quick Example</h3>
-            </div>
-            <!-- /.card-header -->
-            <!-- form start -->
-            <div>
-              <div class="card-body">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+    <div class="results">
+        @if(Session::get('success'))
+        <div class="alert alert-success">
+            {{ Session::get('success') }}
+        </div>
+        @endif
+
+        @if(Session::get('fail'))
+        <div class="alert alert-danger">
+            {{ Session::get('fail') }}
+        </div>
+        @endif
+    </div>
+  <form action="/add_campagne" method="POST">
+    @csrf
+          <div class="container-fluid">
+            <div class="row">
+              
+              <!-- left column -->
+              <div class="col-md-6">
+                <!-- general form elements -->
+                
+                <!-- Horizontal Form -->
+                <div class="card card-info">
+                  <div class="card-header">
+                    <h3 class="card-title">Campagne</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <!-- form start -->
+                  <div class="form-horizontal">
+                    <div class="card-body">
+                      <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Nom</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" name="nom_campagne" placeholder="Nom de la campagne">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label">Type</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" name="type_campagne" placeholder="Type de la campagne">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label">Date Début</label>
+                        <div class="col-sm-10">
+                          <input type="date" class="form-control" name="date_debut" placeholder="Type de la campagne">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label">Date fin</label>
+                        <div class="col-sm-10">
+                          <input type="date" class="form-control" name="date_fin" placeholder="Type de la campagne">
+                        </div>
+                      </div>
+                    
+
+                    </div>
+
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <!-- /.card -->
+
+              </div>
+              <!--/.col (left) -->
+              <!-- right column -->
+              <div class="col-md-6">
+                <!-- Form Element sizes -->
+                <div class="card card-success">
+                  <div class="card-header">
+                    <h3 class="card-title">Autres</h3>
+                  </div>
+                  <div class="card-body">
+                    <div class="form-group row">
+                      <label for="inputPassword3" class="col-sm-4 col-form-label">Nom de la zone</label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" name="nom_zone" placeholder="Les zones">
+                      </div>
+                    </div>
+                      <div class="form-group row">
+                        <label for="inputPassword3" class="col-sm-4 col-form-label">Nom du distributeur</label>
+                        <div class="col-sm-7">
+                          <input type="text" class="form-control" name="nom_distrib" placeholder="Nom distributeur">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputPassword3" class="col-sm-4 col-form-label">Nom de l'organisatiuon</label>
+                        <div class="col-sm-7">
+                          <input type="text" class="form-control" name="nom_organe" placeholder="Nom Organisation">
+                        </div>
+                      </div>
+                    
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
                 </div>
+                <!-- /.card -->
+
+
 
 
               </div>
-              <!-- /.card-body -->
-
-            </div>
-          </div>
-          <!-- /.card -->
-
-
-
-
-          <!-- Horizontal Form -->
-          <div class="card card-info">
-            <div class="card-header">
-              <h3 class="card-title">Horizontal Form</h3>
-            </div>
-            <!-- /.card-header -->
-            <!-- form start -->
-            <div class="form-horizontal">
-              <div class="card-body">
-                <div class="form-group row">
-                  <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-                  <div class="col-sm-10">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-                  <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-                  </div>
-                </div>
-
+              <!--/.col (right) -->
+              <div class="text-center mt-1 ">
+                <button class="btn btn-danger" type="submit">Créer</button>
               </div>
-
             </div>
-          </div>
-          <!-- /.card -->
-
-        </div>
-        <!--/.col (left) -->
-        <!-- right column -->
-        <div class="col-md-6">
-          <!-- Form Element sizes -->
-          <div class="card card-success">
-            <div class="card-header">
-              <h3 class="card-title">Different Height</h3>
-            </div>
-            <div class="card-body">
-              <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg">
-              <br>
-              <input class="form-control" type="text" placeholder="Default input">
-              <br>
-              <input class="form-control form-control-sm" type="text" placeholder=".form-control-sm">
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-
-
-
-
-        </div>
-        <!--/.col (right) -->
-      </div>
-      <!-- /.row -->
-    </div><!-- /.container-fluid -->
-  </section>
+            <!-- /.row -->
+          </div><!-- /.container-fluid -->
+  </form>
+</section>
   <!-- /.content -->
 @endsection

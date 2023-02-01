@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Zone;
 use App\Models\Distrib;
+use App\Models\Campagne;
 use App\Models\Organisation;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,7 @@ class DashboardController extends Controller
             'responsable_organe' => 'required',
             'tel_responsable' => 'required',
             'email_responsable' => 'required',
-        
+
         ]);
         $organe = Organisation::create([
             'nom_organe' => $request->nom_organe,
@@ -52,13 +53,13 @@ class DashboardController extends Controller
         $request->validate([
             'nom_zone' => 'required',
             'addresse_zone' => 'required',
-            
-        
+
+
         ]);
         $zone = Zone::create([
             'nom_zone' => $request->nom_zone,
             'addresse_zone' => $request->addresse_zone,
-           
+
         ]);
         return redirect()->route('zone')->with('success', 'Zone ajouté avec succès');
     }
@@ -72,18 +73,82 @@ class DashboardController extends Controller
             'type_distrib' => 'required',
             'addresse_distrib' => 'required',
             'tel_distrib' => 'required',
+            'email_distrib' => 'required',
             'nom_zone' => 'required',
-            
-        
+
+
         ]);
+
+        // Recherche de l'ID de la zone correspondante
+        $zone = Zone::where('nom_zone', $request->nom_zone)->first();
+        if (!$zone) {
+            return redirect()->back()-with('fail', 'La zone spécifiée n\'a pas été trouvée');
+        }
+        //dd(request()->all());
         $distrib = Distrib::create([
             'nom_distrib' => $request->nom_distrib,
             'type_distrib' => $request->type_distrib,
             'addresse_distrib' => $request->addresse_distrib,
             'tel_distrib' => $request->tel_distrib,
+            'email_distrib' => $request->email_distrib,
             'nom_zone' => $request->nom_zone,
+
         ]);
+
         return redirect()->route('distrib')->with('success', 'Distributeur ajouté avec succès');
     }
+    public function add_campagne(Request $request){
+        //create campagne
+        $request->validate([
+            'nom_campagne' => 'required',
+            'date_debut' => 'required',
+            'date_fin' => 'required',
+            'type_campagne' => 'required',
+            'nom_organe' => 'required',
+            'nom_zone' => 'required',
+            'nom_distrib' => 'required',
+
+
+        ]);
+
+        // Recherche de l'ID de l'organisation correspondante
+        $organe = Organisation::where('nom_organe', $request->nom_organe)->first();
+        if (!$organe) {
+            return redirect()->back()->with('fail', 'L\'organisation spécifiée n\'a pas été trouvée');
+        }
+        
+        // Recherche de l'ID de la zone correspondante
+        $zone = Zone::where('nom_zone', $request->nom_zone)->first();
+      
+        if (!$zone) {
+            return redirect()->back()->with('fail', 'La zone spécifiée n\'a pas été trouvée');
+        }
+        $distrib = Distrib::where('nom_distrib', $request->nom_distrib)->first();
+        if (!$distrib) {
+            return redirect()->back()->with('fail', 'Le distributeur spécifié n\'a pas été trouvé');
+        } 
+
+      
+        $campagne = Campagne::create([
+            'nom_campagne' => $request->nom_campagne,
+            'date_debut' => $request->date_debut,
+            'date_fin' => $request->date_fin,
+            'type_campagne' => $request->type_campagne,
+            'nom_organe' => $request->nom_organe,
+            'nom_zone' => $request->nom_zone,
+            'nom_distrib' => $request->nom_distrib,
+            'organe_id' => $organe->id,
+            'zone_id' => $zone->id,
+            'distrib_id' => $distrib->id,
+
+
+
+        ]);
+       
+        return redirect()->route('campagne')->with('success', 'Campagne ajouté avec succès');
+
+
+    }
+
 
 }

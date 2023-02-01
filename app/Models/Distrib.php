@@ -10,11 +10,12 @@ class Distrib extends Model
     use HasFactory;
    protected $fillable = [
         'nom_distrib',
-        'prenom_distrib',
         'tel_distrib',
+        'type_distrib',
+        'addresse_distrib',
         'email_distrib',
-        'zone_id',
-        'organe_id',
+        'nom_zone',
+       
     ];
     public function zone(){
         return $this->belongsTo(Zone::class);

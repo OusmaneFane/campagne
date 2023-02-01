@@ -21,10 +21,8 @@ class CreateDistribsTable extends Migration
             $table->string('addresse_distrib');
             $table->string('email_distrib');
             $table->string('nom_zone');
-            $table->foreignId('zone_id')->constrained()->onDelete('cascade');
-            $table->foreignId('organe_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('campagne_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('zone_id')->nullable(false)->default(0);
+            $table->foreign('zone_id')->references('id')->on('zones')->onDelete('cascade');
 
             $table->timestamps();
         });

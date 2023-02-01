@@ -170,13 +170,13 @@
                     <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Nom</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="nom_distrib" placeholder="nom de la zone">
+                        <input type="text" class="form-control" name="nom_distrib" placeholder="nom du distributeur">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Type</label>
                     <div class="col-sm-10">
-                  <input type="text" class="form-control" name="addresse_distrib" placeholder="type distributeur">
+                  <input type="text" class="form-control" name="type_distrib" placeholder="type distributeur">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -200,10 +200,10 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Zone concernée</label>
                     <div class="col-sm-10">
-                  <input type="text" class="form-control" name="zone_id" placeholder="Zone concercée">
+                  <input type="text" class="form-control" name="nom_zone" placeholder="Zone concercée">
                     </div>
                 </div>
-                
+
 
             </div>
 
