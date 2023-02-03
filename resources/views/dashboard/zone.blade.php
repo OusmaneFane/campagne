@@ -112,7 +112,15 @@
               </p>
             </a>
           </li>
-
+          <li class="nav-item">
+            <a href="/benef" class="nav-link ">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Bénéficiaires
+                <span class="right badge badge-danger">3</span>
+              </p>
+            </a>
+          </li>
           </li>
           <li class="nav-header">EXAMPLES</li>
           <li class="nav-item">
@@ -169,7 +177,12 @@
                     <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Nom</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="nom_zone" placeholder="Nom">
+                        <select name="nom_zone" id="nom_zone" class="form-control">
+                            <option value="">Sélectionnez une zone</option>
+                            @foreach ($zones as $zone)
+                            <option value="{{ $zone->nom_zone }}">{{ $zone->nom_zone }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="form-group row">

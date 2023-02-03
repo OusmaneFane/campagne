@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+use App\Models\Zone;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Campagne extends Model
 {
@@ -22,4 +24,8 @@ class Campagne extends Model
         'organe_id',
 
     ];
+    public function zones() {
+        return $this->belongsToMany(Zone::class);
+      }
+      
 }

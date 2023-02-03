@@ -105,6 +105,15 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="/benef" class="nav-link ">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Bénéficiaires
+                <span class="right badge badge-danger">3</span>
+              </p>
+            </a>
+          </li>
           <li class="nav-header">EXAMPLES</li>
           <li class="nav-item">
             <a href="pages/calendar.html" class="nav-link">

@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Campagne;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Zone extends Model
 {
@@ -12,4 +13,8 @@ class Zone extends Model
         'nom_zone',
         'addresse_zone',
     ];
+    public function campagnes() {
+        return $this->belongsToMany(Campagne::class);
+      }
+      
 }

@@ -112,7 +112,15 @@
               </p>
             </a>
           </li>
-
+          <li class="nav-item">
+            <a href="/benef" class="nav-link ">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Bénéficiaires
+                <span class="right badge badge-danger">3</span>
+              </p>
+            </a>
+          </li>
 
           </li>
           <li class="nav-header">EXAMPLES</li>
@@ -200,7 +208,12 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Zone concernée</label>
                     <div class="col-sm-10">
-                  <input type="text" class="form-control" name="nom_zone" placeholder="Zone concercée">
+                        <select name="nom_zone" id="nom_zone" class="form-control">
+                            <option value="">Sélectionnez une zone</option>
+                            @foreach ($zones as $zone)
+                            <option value="{{ $zone->nom_zone }}">{{ $zone->nom_zone }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
 
@@ -226,6 +239,49 @@
     </form>
     </div><!-- /.container-fluid -->
 
+
+    <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">DataTable with default features</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <th>Nom distribution</th>
+              <th>Type de la distribution</th>
+              <th>Contacts</th>
+              <th>Adresse</th>
+              <th>Zones</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($distribs as $distrib)
+            <tr>
+                <td>{{ $distrib->nom_distrib}}</td>
+                <td>{{ $distrib->type_distrib}}</td>
+                <td>{{ $distrib->tel_distrib}}</td>
+                <td>{{ $distrib->addresse_distrib}}</td>
+                <td>{{ $distrib->nom_zone}}</td>
+            </tr>
+            @endforeach
+            </tbody>
+            <tfoot>
+            <tr>
+              <th>Rendering engine</th>
+              <th>Browser</th>
+              <th>Platform(s)</th>
+              <th>Engine version</th>
+              <th>CSS grade</th>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    
   </section>
   <!-- /.content -->
+ 
 @endsection
