@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\DB;
 class DashboardController extends Controller
 {
     public function index(){
-        return view('/dashboard.index');
+        $campagnes = Campagne::where('id', '!=', '0')->count();
+        $zones = Zone::where('id', '!=', '0')->count();
+        $distribs = Distrib::where('id', '!=', '0')->count();
+        $benefs = Beneficiaire::where('id', '!=', '0')->count();
+        return view('/dashboard.index', ['campagnes'=>$campagnes, 'zones'=>$zones, 'distribs'=>$distribs, 'benefs'=>$benefs]);
     }
     public function benef() {
         $zones = Zone::all();
@@ -208,6 +212,18 @@ class DashboardController extends Controller
 
     return redirect()->back()->with('success', 'Bénéficiaire ajouté avec succès');
 
+    }
+    public function info_zone(){
+        $zones = Zone::all();
+        return view('/dashboard.info_zone', ['zones'=>$zones]);
+    }
+    public function info_distrib(){
+        $distribs = Distrib::all();
+        return view('/dashboard.info_distrib', ['distribs'=>$distribs]);
+    }
+    public function info_campagne(){
+        $campagnes = Campagne::all();
+        return view('/dashboard.info_campagne', ['campagnes' => $campagnes]);
     }
 
 }

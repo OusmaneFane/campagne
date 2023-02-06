@@ -42,6 +42,10 @@ Route::middleware(['list'])->group(function () {
     Route::post('/add_benef', [DashboardController::class, 'add_benef'])->name('add_benef');
     Route::get('/campagne/{id}/edit', [DashboardController::class, 'edit_campagne'])->name('edit_campagne');
     Route::post('/store_benef', [DashboardController::class, 'store_benef'])->name('store_benef');
+    Route::get('/info_zone', [DashboardController::class, 'info_zone'])->name('info_zone');
+    Route::get('/info_distrib', [DashboardController::class, 'info_distrib'])->name('info_distrib');
+    Route::get('/info_campagne', [DashboardController::class, 'info_campagne'])->name('info_campagne');
+
 
 });
 
