@@ -1,5 +1,5 @@
 @extends("base.master")
-@section('titre')
+@section('title')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -78,59 +78,49 @@
           </li>
           <li class="nav-item">
             <a href="/organe" class="nav-link ">
-              <i class="nav-icon fas fa-th"></i>
+                <i class="bi bi-buildings"></i>
               <p>
                 Organisations
-                <span class="right badge badge-danger">2</span>
+                <span class="right badge bg-pink">2</span>
               </p>
             </a>
           </li>
           <li class="nav-item">
             <a href="/campagne" class="nav-link ">
-              <i class="nav-icon fas fa-th"></i>
+                <i class="bi bi-megaphone-fill"></i>
               <p>
                 Campagnes
-                <span class="right badge badge-danger">New</span>
+                <span class="right badge bg-pink">New</span>
               </p>
             </a>
           </li>
           <li class="nav-item">
             <a href="/zone" class="nav-link active">
-              <i class="nav-icon fas fa-th"></i>
+                <i class="bi bi-geo-fill"></i>
               <p>
                 Zones
-                <span class="right badge badge-danger">3</span>
+                <span class="right badge bg-pink">3</span>
               </p>
             </a>
           </li>
           <li class="nav-item">
             <a href="/distrib" class="nav-link ">
-              <i class="nav-icon fas fa-th"></i>
+                <i class="bi bi-arrows-fullscreen"></i>
               <p>
                 Distributeurs
-                <span class="right badge badge-danger">3</span>
+                <span class="right badge bg-pink">3</span>
               </p>
             </a>
           </li>
           <li class="nav-item">
             <a href="/benef" class="nav-link ">
-              <i class="nav-icon fas fa-th"></i>
+                <i class="bi bi-people-fill"></i>
               <p>
                 Bénéficiaires
-                <span class="right badge badge-danger">3</span>
+                <span class="right badge bg-pink">3</span>
               </p>
             </a>
           </li>
-          </li>
-          <li class="nav-header">EXAMPLES</li>
-          <li class="nav-item">
-            <a href="pages/calendar.html" class="nav-link">
-              <i class="nav-icon far fa-calendar-alt"></i>
-              <p>
-                Calendar
-                <span class="badge badge-info right">2</span>
-              </p>
-            </a>
           </li>
 
         </ul>
@@ -191,7 +181,7 @@
                   <input type="text" class="form-control" name="addresse_zone" placeholder="Adresse">
                     </div>
                 </div>
-                
+
 
             </div>
 

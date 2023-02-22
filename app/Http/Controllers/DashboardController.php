@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Zone;
 use App\Models\Distrib;
 use App\Models\Campagne;
+use App\Imports\ImportBenef;
 use App\Models\Beneficiaire;
 use App\Models\Organisation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class DashboardController extends Controller
@@ -166,14 +168,14 @@ class DashboardController extends Controller
 
 
 
-    
+
     public function add_benef()
     {
         //create beneficiare
 
 
     }
-    
+
     public function edit_campagne($id){
         $campagne = Campagne::find($id);
         $nom_zones = explode(',', $campagne->nom_zone);
@@ -184,8 +186,8 @@ class DashboardController extends Controller
         ->get();
         return view('/dashboard.edit_campagne', ['campagne'=>$campagne, 'benefs'=>$benefs]);
         }
-   
-      
+
+
 
     public function store_benef(Request $request){
         //dd(request()->all());
@@ -226,4 +228,48 @@ class DashboardController extends Controller
         return view('/dashboard.info_campagne', ['campagnes' => $campagnes]);
     }
 
+
+    public function  import_benef() {
+       return view('/dashboard.import_benef');
+    }
+
+    public function import(Request $request) {
+       request()->validate([
+          'file' => 'required|mimes:xls,xlsx'
+       ]);
+
+         Excel::import(new ImportBenef, request()->file('file'));
+
+            return redirect()->back()->with('success', 'Bénéficiaires ajoutés avec succès');
+
+
+    }
+
+    public function edit_distrib($id){
+        $distrib = Distrib::find($id);
+        $zones = Zone::all();
+        return view('/dashboard.edit_distrib', ['distrib'=>$distrib, 'zones'=>$zones]);
+
+    }
+
+    public function update_distrib(Request $request, $id){
+       // update with modal 
+         
+        $distrib = Distrib::find($id);
+            $distrib->update([
+            'nom_distrib' => $request->nom_distrib,
+            'type_distrib' => $request->type_distrib,
+            'addresse_distrib' => $request->addresse_distrib,
+            'tel_distrib' => $request->tel_distrib,
+            'email_distrib' => $request->email_distrib,
+            'nom_zone' => $request->nom_zone,
+        ]);
+        if($distrib){
+            return redirect()->back()->with('success', 'Distributeur modifié avec succès');
+            }else{
+                return redirect()->back()->with('fail', 'Distributeur non modifié');
+        }
+        
+
+    }
 }
