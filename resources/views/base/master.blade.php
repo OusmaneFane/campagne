@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Mazer Admin Dashboard</title>
+    <title>Campagne | Malicreances</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -16,29 +16,34 @@
     <link rel="stylesheet" href="/assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="/assets/css/app.css">
     <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </head>
 
-<body>
+<body >
+
+
     <div id="app">
+
         <div id="sidebar" class="active">
             <div class="sidebar-wrapper active">
-                <div class="sidebar-header">
+
+                <div class="sidebar-header text-center">
                     <div class="d-flex justify-content-between">
-                        <div class="logo">
-                            <a href="/dashboard"><img src="/assets/images/logo/logo.png" alt="Logo" srcset=""></a>
+                        <div class="auth-logo d-flex align-items-center">
+                            <img  src="/images/mlc3.jpg" alt="">
+                            {{-- <h2 class="auth-title m-2">  CampaiGn</h2> --}}
                         </div>
-                        <div class="toggler">
-                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
-                        </div>
+
                     </div>
                 </div>
+
                 <div class="sidebar-menu">
                     <ul class="menu">
-                        <li class="sidebar-title">Menu</li>
+
 
                         <li class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}"  >
                             <a href="/dashboard" class='sidebar-link'>
@@ -61,10 +66,10 @@
                             </a>
                             <ul class="submenu  {{ request()->routeIs('campagne', 'info_campagne', 'edit_campagne') ? 'active' : '' }}">
                                 <li class="submenu-item  {{ request()->routeIs('campagne') ? 'active' : '' }}">
-                                    <a href="/campagne">Créer</a>
+                                    <a href="/campagne">Ajouter</a>
                                 </li>
                                 <li class="submenu-item  {{ request()->routeIs('info_campagne', 'edit_campagne') ? 'active' : '' }}">
-                                    <a href="/info_campagne">Liste</a>
+                                    <a href="/info_campagne">Modifier</a>
                                 </li>
 
                             </ul>
@@ -79,10 +84,10 @@
                             </a>
                             <ul class="submenu  {{ request()->routeIs('organe', 'info_organe') ? 'active' : '' }}">
                                 <li class="submenu-item  {{ request()->routeIs('organe') ? 'active' : '' }}">
-                                    <a href="/organe">Créer</a>
+                                    <a href="/organe">Ajouter</a>
                                 </li>
                                 <li class="submenu-item  {{ request()->routeIs('info_organe') ? 'active' : '' }}">
-                                    <a href="/info_organe">Liste</a>
+                                    <a href="/info_organe">Modifier</a>
                                 </li>
 
                             </ul>
@@ -97,10 +102,10 @@
                             </a>
                             <ul class="submenu   {{ request()->routeIs('distrib', 'info_distrib', 'edit_distrib') ? 'active' : '' }}">
                                 <li class="submenu-item   {{ request()->routeIs('distrib') ? 'active' : '' }}">
-                                    <a href="/distrib">Créer</a>
+                                    <a href="/distrib">Ajouter</a>
                                 </li>
                                 <li class="submenu-item   {{ request()->routeIs('info_distrib', 'edit_distrib') ? 'active' : '' }}">
-                                    <a href="/info_distrib">Liste</a>
+                                    <a href="/info_distrib">Modifier</a>
                                 </li>
 
                             </ul>
@@ -114,10 +119,10 @@
                             </a>
                             <ul class="submenu   {{ request()->routeIs('zone', 'info_zone') ? 'active' : '' }}">
                                 <li class="submenu-item   {{ request()->routeIs('zone') ? 'active' : '' }}">
-                                    <a href="/zone">Créer</a>
+                                    <a href="/zone">Ajouter</a>
                                 </li>
                                 <li class="submenu-item   {{ request()->routeIs('info_zone', 'edit_zone') ? 'active' : '' }}">
-                                    <a href="/info_zone">Liste</a>
+                                    <a href="/info_zone">Modifier</a>
                                 </li>
 
                             </ul>
@@ -137,12 +142,35 @@
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
         </div>
+        <div >
+
+            <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+                <div class="container-fluid">
+                  <!-- Logo or site name -->
+                  <a class="navbar-brand mx-auto" href="#">CampaiGn</a>
+
+                  <!-- Search bar -->
+                  <form class="d-flex ms-auto">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  </form>
+
+                  <!-- Notification icons -->
+                  <ul class="navbar-nav ms-3">
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person"></i>
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+
+        </div>
         <div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
+
 
             <div class="page-heading">
 
@@ -221,7 +249,7 @@
                 </section>
             </div>
 
-            <footer>
+            {{-- <footer>
                 <div class="footer clearfix mb-0 text-muted">
                     <div class="float-start">
                         <p>2021 &copy; Mazer</p>
@@ -231,7 +259,7 @@
                                 href="http://ahmadsaugi.com">A. Saugi</a></p>
                     </div>
                 </div>
-            </footer>
+            </footer> --}}
         </div>
     </div>
     <script src="/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>

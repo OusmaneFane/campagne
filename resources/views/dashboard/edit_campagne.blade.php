@@ -20,10 +20,11 @@
       <table id="example1" class="table table-bordered table-striped">
         <thead>
         <tr>
-          <th>Nom Des beneficiaires</th>
-          <th>Prenoms des beneficiares</th>
+          <th>Nom </th>
+          <th>Prénoms </th>
           <th>Adresses</th>
           <th>Contacts</th>
+          <th>Montant</th>
           <th>Statut</th>
           <th>Voir</th>
 
@@ -36,8 +37,9 @@
         <td>{{ $beneficiaire->prenom_beneficiaire}}</td>
         <td>{{ $beneficiaire->adresse_beneficiaire}}</td>
         <td>{{ $beneficiaire->tel_beneficiaire}}</td>
+        <td>{{ $beneficiaire->somARecevoir }} Fcfa</td>
         <td>
-            <button class="btn {{ $beneficiaire->statut == 0 ? 'btn-danger' : 'btn-success' }}" data-toggle="modal" data-target="#modal_{{ $beneficiaire->id }}">
+            <button class="badge  {{ $beneficiaire->statut == 0 ? 'btn-danger' : 'btn-success' }}" data-toggle="modal" data-target="#modal_{{ $beneficiaire->id }}">
                 {{ $beneficiaire->statut == 0 ? 'En attente' : 'Validé' }}
             </button>
 
@@ -47,7 +49,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="modal_{{ $beneficiaire->id }}_label">Ajouter un montant et des pièces jointes pour {{ $beneficiaire->nom_beneficiaire }} {{ $beneficiaire->prenom_beneficiaire }}</h5>
+                                <h5 class="modal-title" id="modal_{{ $beneficiaire->id }}_label">Valider le payement pour: {{ $beneficiaire->nom_beneficiaire }} {{ $beneficiaire->prenom_beneficiaire }}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -72,7 +74,7 @@
                 </div>
             @endif
         </td>
-        <td> 
+        <td>
             @foreach ($beneficiaire->piecesJointes as $pj)
             <a href="#" data-toggle="modal" data-target="#myModal{{ $pj->id }}"> <i class="bi bi-eye-fill"></i></a>
             <div class="modal fade" id="myModal{{ $pj->id }}" role="dialog">
@@ -89,7 +91,7 @@
                                 <p>Fichier non trouvé</p>
                             @endif
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
