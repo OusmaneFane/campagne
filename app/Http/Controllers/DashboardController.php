@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Zone;
 use App\Models\Distrib;
 use App\Models\Campagne;
+use App\Models\PieceJointe;
 use App\Imports\ImportBenef;
 use App\Models\Beneficiaire;
 use App\Models\Organisation;
@@ -184,7 +185,12 @@ class DashboardController extends Controller
         $benefs = DB::table('beneficiaires')
         ->whereIn('zone_id', $zone_ids)
         ->get();
-        return view('/dashboard.edit_campagne', ['campagne'=>$campagne, 'benefs'=>$benefs]);
+        $benefs = Beneficiaire::whereIn('zone_id', $zone_ids)
+            ->with('piecesJointes')
+            ->get();
+
+        
+        return view('/dashboard.edit_campagne', ['campagne'=>$campagne, 'benefs'=>$benefs, ]);
         }
 
 
@@ -253,8 +259,8 @@ class DashboardController extends Controller
     }
 
     public function update_distrib(Request $request, $id){
-       // update with modal 
-         
+       // update with modal
+
         $distrib = Distrib::find($id);
             $distrib->update([
             'nom_distrib' => $request->nom_distrib,
@@ -269,7 +275,38 @@ class DashboardController extends Controller
             }else{
                 return redirect()->back()->with('fail', 'Distributeur non modifié');
         }
-        
+
 
     }
+
+    public function info_organe(){
+        $organes = Organisation::all();
+        return view('/dashboard.info_organe', ['organes'=>$organes]);
+
+    }
+    public function update(Request $request, $id)
+{
+    $beneficiaire = Beneficiaire::findOrFail($id);
+    $beneficiaire->somARecevoir = $request->input('somARecevoir');
+
+    if ($request->hasFile('pieces_jointes')) {
+        $files = $request->file('pieces_jointes');
+        foreach ($files as $file) {
+            $path = $file->store('pieces_jointes');
+            $pieceJointe = new PieceJointe([
+                'url' => $path,
+                'nom' => $file->getClientOriginalName(),
+                'chemin' => $file->getClientMimeType(),
+            ]);
+
+            $beneficiaire->piecesJointes()->save($pieceJointe);
+        }
+    }
+
+    $beneficiaire->statut = 1;
+    $beneficiaire->save();
+
+    return redirect()->back()->with('success', 'Bénéficiaire mis à jour avec succès');
+}
+
 }

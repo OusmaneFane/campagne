@@ -45,11 +45,14 @@ Route::middleware(['list'])->group(function () {
     Route::get('/info_zone', [DashboardController::class, 'info_zone'])->name('info_zone');
     Route::get('/info_distrib', [DashboardController::class, 'info_distrib'])->name('info_distrib');
     Route::get('/info_campagne', [DashboardController::class, 'info_campagne'])->name('info_campagne');
+    Route::get('/info_organe', [DashboardController::class, 'info_organe'])->name('info_organe');
     Route::get('/distrib/{id}/edit', [DashboardController::class, 'edit_distrib'])->name('edit_distrib');
     Route::put('/distrib/{id}', [DashboardController::class, 'update_distrib'])->name('update_distrib');
     // import beneficiaire
-    
+
     Route::post('/import_file', [DashboardController::class, 'import']);
+//update beneficiaire
+Route::put('beneficiaires/{beneficiaire}', [DashboardController::class, 'update'])->name('beneficiaires.update');
 
 
 });

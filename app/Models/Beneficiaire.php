@@ -16,6 +16,21 @@ class Beneficiaire extends Model
         'tel_beneficiaire',
         'zone_id',
     ];
+    public function zone()
+    {
+        return $this->belongsTo(Zone::class);
+    }
+
+    public function campagne()
+    {
+        return $this->belongsTo(Campagne::class);
+    }
+
+    public function piecesJointes()
+{
+    return $this->hasMany(PieceJointe::class);
+}
+
 
 }
 

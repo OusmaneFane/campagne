@@ -54,27 +54,38 @@
                             </a>
                         </li> --}}
 
-                        <li class="sidebar-item  has-sub  {{ request()->routeIs('campagne', 'info_campagne') ? 'active' : '' }}">
+                        <li class="sidebar-item  has-sub  {{ request()->routeIs('campagne', 'info_campagne', 'edit_campagne') ? 'active' : '' }}">
                             <a href="#" class='sidebar-link '>
                                 <i class="bi bi-megaphone-fill "></i>
                                 <span>Campagnes</span>
                             </a>
-                            <ul class="submenu  {{ request()->routeIs('campagne', 'info_campagne') ? 'active' : '' }}">
+                            <ul class="submenu  {{ request()->routeIs('campagne', 'info_campagne', 'edit_campagne') ? 'active' : '' }}">
                                 <li class="submenu-item  {{ request()->routeIs('campagne') ? 'active' : '' }}">
                                     <a href="/campagne">Créer</a>
                                 </li>
-                                <li class="submenu-item  {{ request()->routeIs('info_campagne') ? 'active' : '' }}">
+                                <li class="submenu-item  {{ request()->routeIs('info_campagne', 'edit_campagne') ? 'active' : '' }}">
                                     <a href="/info_campagne">Liste</a>
                                 </li>
 
                             </ul>
                         </li>
 
-                        <li class="sidebar-item  {{ request()->routeIs('organe') ? 'active' : '' }}">
-                            <a href="/organe" class='sidebar-link'>
+
+
+                        <li class="sidebar-item  has-sub  {{ request()->routeIs('organe', 'info_organe') ? 'active' : '' }}">
+                            <a href="#" class='sidebar-link '>
                                 <i class="bi bi-buildings-fill"></i>
-                                <span>Organisation</span>
+                                <span>Organisations</span>
                             </a>
+                            <ul class="submenu  {{ request()->routeIs('organe', 'info_organe') ? 'active' : '' }}">
+                                <li class="submenu-item  {{ request()->routeIs('organe') ? 'active' : '' }}">
+                                    <a href="/organe">Créer</a>
+                                </li>
+                                <li class="submenu-item  {{ request()->routeIs('info_organe') ? 'active' : '' }}">
+                                    <a href="/info_organe">Liste</a>
+                                </li>
+
+                            </ul>
                         </li>
 
 
@@ -95,11 +106,21 @@
                             </ul>
                         </li>
 
-                        <li class="sidebar-item  {{ request()->routeIs('zone') ? 'active' : '' }}">
-                            <a href="/zone" class='sidebar-link'>
+
+                        <li class="sidebar-item  has-sub  {{ request()->routeIs('zone', 'info_zone') ? 'active' : '' }}">
+                            <a href="#" class='sidebar-link '>
                                 <i class="bi bi-geo-fill"></i>
                                 <span>Zones</span>
                             </a>
+                            <ul class="submenu   {{ request()->routeIs('zone', 'info_zone') ? 'active' : '' }}">
+                                <li class="submenu-item   {{ request()->routeIs('zone') ? 'active' : '' }}">
+                                    <a href="/zone">Créer</a>
+                                </li>
+                                <li class="submenu-item   {{ request()->routeIs('info_zone', 'edit_zone') ? 'active' : '' }}">
+                                    <a href="/info_zone">Liste</a>
+                                </li>
+
+                            </ul>
                         </li>
 
                         <li class="sidebar-item  {{ request()->routeIs('benef') ? 'active' : '' }}">
@@ -124,6 +145,7 @@
             </header>
 
             <div class="page-heading">
+
                 @yield('title')
             </div>
             <div class="page-content">
@@ -219,6 +241,7 @@
     <script src="/assets/js/pages/dashboard.js"></script>
 
     <script src="/assets/js/main.js"></script>
+
 </body>
 
 </html>
