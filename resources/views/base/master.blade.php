@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/assets/css/bootstrap.css">
 
     <link rel="stylesheet" href="/assets/vendors/iconly/bold.css">
-
+    <link rel="stylesheet" href="/assets/vendors/simple-datatables/style.css">
     <link rel="stylesheet" href="/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="/assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="/assets/css/app.css">
@@ -35,6 +35,8 @@
                     <div class="d-flex justify-content-between">
                         <div class="auth-logo d-flex align-items-center">
                             <img  src="/images/mlc3.jpg" alt="">
+                           {{-- <span style="text-size: 2px"> Welcome <p style="color:rgb(76, 32, 158)">{{ Auth::user()->name }}</p><span> --}}
+
                             {{-- <h2 class="auth-title m-2">  CampaiGn</h2> --}}
                         </div>
 
@@ -269,7 +271,12 @@
     <script src="/assets/js/pages/dashboard.js"></script>
 
     <script src="/assets/js/main.js"></script>
-
+    <script src="/assets/vendors/simple-datatables/simple-datatables.js"></script>
+    <script>
+        // Simple Datatable
+        let table1 = document.querySelector('#table1');
+        let dataTable = new simpleDatatables.DataTable(table1);
+    </script>
 </body>
 
 </html>
