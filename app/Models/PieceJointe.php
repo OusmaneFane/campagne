@@ -10,6 +10,7 @@ class PieceJointe extends Model
     protected $fillable = [
         'nom',
         'chemin',
+        'url',s
         'beneficiaire_id',
     ];
 

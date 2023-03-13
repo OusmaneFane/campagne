@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = Auth::user()->name;
+        return view('/google2fa/index', ['user'=>$user]);
+    }
+    public function index2(Request $request)
+    {
+
+
+        $user = Auth::user()->name;
+        $user2 = Auth::user()->id;
+        $request->session()->put('Logged', $user->id);
+
+        return view('/dashboard', ['user'=>$user]);
     }
 }

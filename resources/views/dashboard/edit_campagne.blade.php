@@ -86,16 +86,21 @@
                         </div>
                         <div class="modal-body">
                             @if (Storage::exists($pj->url))
-                                <img src="{{ asset($pj->url) }}" alt="{{ $pj->nom }}">
+                                <img src="{{ Storage::url($pj->url) }}" alt="Image">
+                                <img src="{{ asset('/storage'.$pj->url) }}" alt="image2">
+
+
                             @else
                                 <p>Fichier non trouvé</p>
                             @endif
                         </div>
-
                     </div>
                 </div>
             </div>
         @endforeach
+        
+
+
     </tr>
 @endforeach
 

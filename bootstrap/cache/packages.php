@@ -70,4 +70,26 @@
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
+  'pragmarx/google2fa-laravel' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'PragmaRX\\Google2FALaravel\\ServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Google2FA' => 'PragmaRX\\Google2FALaravel\\Facade',
+    ),
+  ),
+  'simplesoftwareio/simple-qrcode' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'SimpleSoftwareIO\\QrCode\\QrCodeServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'QrCode' => 'SimpleSoftwareIO\\QrCode\\Facades\\QrCode',
+    ),
+  ),
 );

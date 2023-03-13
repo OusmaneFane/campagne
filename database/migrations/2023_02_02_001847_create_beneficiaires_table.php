@@ -20,7 +20,7 @@ class CreateBeneficiairesTable extends Migration
             $table->string('adresse_beneficiaire');
             $table->string('tel_beneficiaire');
             $table->foreignId('zone_id')->constrained()->onDelete('cascade');
-            $table->foreignId('campagne_id')->constrained()->onDelete('cascade');
+            $table->foreignId('campagne_id')->default(0)->constrained()->onDelete('cascade');
 
             $table->timestamps();
         });

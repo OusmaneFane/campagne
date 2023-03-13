@@ -189,7 +189,7 @@ class DashboardController extends Controller
             ->with('piecesJointes')
             ->get();
 
-        
+
         return view('/dashboard.edit_campagne', ['campagne'=>$campagne, 'benefs'=>$benefs, ]);
         }
 
@@ -258,6 +258,10 @@ class DashboardController extends Controller
 
     }
 
+
+
+
+
     public function update_distrib(Request $request, $id){
        // update with modal
 
@@ -286,22 +290,42 @@ class DashboardController extends Controller
     }
     public function update(Request $request, $id)
 {
+
     $beneficiaire = Beneficiaire::findOrFail($id);
     $beneficiaire->somARecevoir = $request->input('somARecevoir');
 
     if ($request->hasFile('pieces_jointes')) {
-        $files = $request->file('pieces_jointes');
-        foreach ($files as $file) {
-            $path = $file->store('pieces_jointes');
-            $pieceJointe = new PieceJointe([
-                'url' => $path,
-                'nom' => $file->getClientOriginalName(),
-                'chemin' => $file->getClientMimeType(),
-            ]);
+        $file = $request->file('pieces_jointes')[0];
+        $path = $file->store('pieces_jointes');
+        $pieceJointe = new PieceJointe([
+            'nom' => $file->getClientOriginalName(),
+            'chemin' => $file->getClientOriginalExtension(),
+        ]);
+        $pieceJointe->url = $path;
+        $pieceJointe->url = '/storage/app/pieces_jointes/' . $file->hashName();
 
-            $beneficiaire->piecesJointes()->save($pieceJointe);
-        }
+        $pieceJointe->beneficiaire_id = $beneficiaire->id;
+       
+        $pieceJointe->save();
     }
+    // if ($request->hasFile('pieces_jointes')) {
+    //     $file = $request->file('pieces_jointes')[0];
+    //     $fileName = $file->getClientOriginalName();
+    //     $extension = $file->getClientOriginalExtension();
+    //     $path = $file->storeAs('pieces_jointes', $fileName);
+    //     $pieceJointe = new PieceJointe([
+    //         'nom' => $fileName,
+    //         'chemin' => $extension,
+    //         'url' => $path,
+    //     ]);
+    //     dd($pieceJointe);
+    //     $beneficiaire->piecesJointes()->save($pieceJointe);
+    // }
+    
+    
+    
+    
+
 
     $beneficiaire->statut = 1;
     $beneficiaire->save();

@@ -18,6 +18,7 @@ class CreatePieceJointesTable extends Migration
         $table->foreignId('beneficiaire_id')->constrained()->onDelete('cascade');
         $table->string('nom');
         $table->string('chemin');
+        $table->string('url');
         $table->timestamps();
     });
 }

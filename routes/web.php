@@ -1,8 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TwoFactorController;
+use App\Http\Controllers\Auth\RegisterController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -16,12 +20,25 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
+// Route de base
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('login');
 
-//LOGIN
+// Route de connexion
 Route::post('/check', [LoginController::class, 'check']);
+
+Auth::routes();
+Route::middleware(['2fa'])->group(function () {
+
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::post('/2fa', function () {
+        return redirect(route('homesite'));
+    })->name('2fa');
+});
+Route::get('/complete-registration', [RegisterController::class, 'completeRegistration'])->name('complete.registration');
+Route::get('/homesite', [App\Http\Controllers\HomeController::class, 'index2'])->name('homesite');
+
 Route::get('/logout', [LoginController::class, 'logout']);
 
 // Auth::routes();
